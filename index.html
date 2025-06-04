@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hermes Herasme - Página Personal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+        }
+
+        .profile-circle {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: bold;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .name {
+            font-size: 3.5em;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+            to { text-shadow: 0 0 40px rgba(255, 255, 255, 0.8); }
+        }
+
+        .matricula {
+            font-size: 1.5em;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+
+        .matricula:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+
+        .interactive-button {
+            background: linear-gradient(45deg, #ff6b6b, #ffd93d);
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            color: white;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .interactive-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .interactive-area {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: #ffd700;
+            display: block;
+            animation: countUp 2s ease-out;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stat-label {
+            font-size: 1.2em;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 60px;
+        }
+
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: particle-float 6s infinite linear;
+        }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .name {
+                font-size: 2.5em;
+            }
+            
+            .sections {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+    
+    <div class="container">
+        <header>
+            <div class="profile-circle">HH</div>
+            <h1 class="name">Hermes Herasme</h1>
+            <div class="matricula">Matrícula: 20230203</div>
+        </header>
+
+        <div class="interactive-area">
+            <button class="interactive-button" onclick="changeColors()">Cambiar Colores</button>
+            <button class="interactive-button" onclick="showMessage()">Mensaje Especial</button>
+            <button class="interactive-button" onclick="animateElements()">Animar Todo</button>
+        </div>
+
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number" id="year">2024</span>
+                <div class="stat-label">Año Actual</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="visits">1</span>
+                <div class="stat-label">Visitas</div>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="projects">5</span>
+                <div class="stat-label">Proyectos</div>
+            </div>
+        </div>
+
+        <div class="sections">
+            <div class="card" onclick="expandCard(this)">
+                <h3>📚 Educación</h3>
+                <p>Estudiante comprometido con el aprendizaje continuo y la excelencia académica. Siempre buscando nuevos desafíos y oportunidades de crecimiento.</p>
+            </div>
+
+            <div class="card" onclick="expandCard(this)">
+                <h3>💻 Tecnología</h3>
+                <p>Apasionado por las tecnologías web modernas, desarrollo de aplicaciones y la innovación digital. HTML, CSS y JavaScript son mis herramientas favoritas.</p>
+            </div>
+
+            <div class="card" onclick="expandCard(this)">
+                <h3>🎯 Objetivos</h3>
+                <p>Enfocado en desarrollar habilidades técnicas sólidas y contribuir a proyectos que generen un impacto positivo en la comunidad.</p>
+            </div>
+
+            <div class="card" onclick="expandCard(this)">
+                <h3>🌟 Intereses</h3>
+                <p>Desarrollo web, programación, diseño digital, y todo lo relacionado con la creación de experiencias digitales únicas e interactivas.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Hermes Herasme - Matrícula: 20230203</p>
+            <p>Creado con HTML, CSS y JavaScript</p>
+        </footer>
+    </div>
+
+    <script>
+        // Contador de visitas
+        let visitCount = 1;
+        
+        // Crear partículas flotantes
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = Math.random() * 4 + 2 + 'px';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 3 + 3) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Cambiar colores del fondo
+        function changeColors() {
+            const colors = [
+                'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                'linear-gradient(135deg, #f093fb 0%, #f5576c 100%)',
+                'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)',
+                'linear-gradient(135deg, #43e97b 0%, #38f9d7 100%)',
+                'linear-gradient(135deg, #fa709a 0%, #fee140 100%)',
+                'linear-gradient(135deg, #a8edea 0%, #fed6e3 100%)'
+            ];
+            
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            document.body.style.background = randomColor;
+        }
+
+        // Mostrar mensaje especial
+        function showMessage() {
+            const messages = [
+                '¡Bienvenido a mi página personal!',
+                '¡Gracias por visitar mi sitio web!',
+                '¡El aprendizaje nunca termina!',
+                '¡La tecnología es el futuro!',
+                '¡Sigamos construyendo juntos!'
+            ];
+            
+            const randomMessage = messages[Math.floor(Math.random() * messages.length)];
+            alert(randomMessage);
+            
+            // Incrementar contador de visitas
+            visitCount++;
+            document.getElementById('visits').textContent = visitCount;
+        }
+
+        // Animar todos los elementos
+        function animateElements() {
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.transform = 'scale(1.05) rotate(5deg)';
+                    setTimeout(() => {
+                        card.style.transform = 'scale(1) rotate(0deg)';
+                    }, 300);
+                }, index * 100);
+            });
+            
+            // Animar el círculo del perfil
+            const profileCircle = document.querySelector('.profile-circle');
+            profileCircle.style.transform = 'scale(1.2) rotate(360deg)';
+            setTimeout(() => {
+                profileCircle.style.transform = 'scale(1) rotate(0deg)';
+            }, 500);
+        }
+
+        // Expandir tarjetas al hacer clic
+        function expandCard(card) {
+            const isExpanded = card.classList.contains('expanded');
+            
+            // Remover clase expanded de todas las tarjetas
+            document.querySelectorAll('.card').forEach(c => {
+                c.classList.remove('expanded');
+                c.style.transform = 'scale(1)';
+            });
+            
+            if (!isExpanded) {
+                card.classList.add('expanded');
+                card.style.transform = 'scale(1.02)';
+                card.style.background = 'rgba(255, 255, 255, 0.2)';
+            }
+        }
+
+        // Efecto de escritura para el nombre
+        function typeWriter() {
+            const nameElement = document.querySelector('.name');
+            const text = 'Hermes Herasme';
+            nameElement.textContent = '';
+            
+            let i = 0;
+            const timer = setInterval(() => {
+                nameElement.textContent += text.charAt(i);
+                i++;
+                if (i > text.length - 1) {
+                    clearInterval(timer);
+                }
+            }, 100);
+        }
+
+        // Inicializar cuando se carga la página
+        window.onload = function() {
+            createParticles();
+            
+            // Animar números de estadísticas
+            setTimeout(() => {
+                const currentYear = new Date().getFullYear();
+                document.getElementById('year').textContent = currentYear;
+            }, 1000);
+        };
+
+        // Efectos al hacer scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const cards = document.querySelectorAll('.card');
+            
+            cards.forEach((card, index) => {
+                const rate = scrolled * -0.5;
+                card.style.transform = `translateY(${rate}px)`;
+            });
+        });
+
+        // Efectos de hover para las estadísticas
+        document.querySelectorAll('.stat-item').forEach(stat => {
+            stat.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.1)';
+                this.style.transition = 'all 0.3s ease';
+            });
+            
+            stat.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
